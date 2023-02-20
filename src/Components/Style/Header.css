@@ -1,0 +1,59 @@
+.header-block{
+    width: 100%;
+    height: 80px;
+    display: flex;
+    background-color: #00000000;
+    z-index: 3;
+    position: relative;
+}
+.header-btn{
+    width: 5%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    cursor: pointer;
+    user-select: none;
+}
+.header-logo-box{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+}
+.logo-text{
+    text-align: center;
+    width: 30%;
+    height: 50%;
+    font-family: Satisfy , Dancing Script ,Dosis , Raleway;
+    font-size: 25px;
+    user-select: none;
+    cursor: pointer;
+    margin-left: 5%;
+}
+.header-location-block{
+    margin-left: 18%;
+}
+.header-location-block , .header-contacts-block{
+    width: 12%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.header-location-block a , .header-contacts-block a{
+    text-decoration: none;
+    color: #000;
+    font-size: 16px;
+    font-family: Dosis;
+}
+.header-location-block:hover a{
+    text-decoration: underline;
+}
+.header-contacts-block:hover a{
+    text-decoration: underline;
+}
