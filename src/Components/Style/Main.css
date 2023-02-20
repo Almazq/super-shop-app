@@ -16,6 +16,8 @@
     font-family: Quicksand;
     margin: 5% 0;
     cursor: pointer;
+    transition: 0.7s;
+
 }
 .contents-navbar ul li:hover{
     font-weight: 600;
@@ -82,10 +84,8 @@
 @keyframes imgbottomAnimation {
     0%{
         top: 0%;
-        opacity: 1;
     }
     100%{
-        opacity: 0.9;
         top: 100%;
     }
 }

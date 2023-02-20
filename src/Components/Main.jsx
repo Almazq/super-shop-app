@@ -9,36 +9,51 @@ function Main(props) {
   const [countPage, setCountPage] = useState(0);
   const [pageLength, setPageLength] = useState(props.img.length-1);
   const [animationShow, setAnimationShow] = useState(false);
+  const [animationProcess, setAnimationProcess] = useState(false);
 
-  console.log(countPage);
-  console.log(props.img.length)
+
+
   const handleOnWheel = (e)=>{
-    if(e.deltaY == 125){
-      if(countPage != pageLength){
-        if(animationShow != true){
-          setAnimationShow(true);
+      setAnimationProcess(true);
+      if(e.deltaY > 0){
+        if(countPage != pageLength){
+          if(animationShow != true){
+            setAnimationProcess(true);
+            setAnimationShow(true);
+            setTimeout(()=>{
+              setCountPage(prev => prev + 1);
+              setAnimationShow(false);
+              setAnimationProcess(false);
+            } , 1000)
+          }
+        }else{
           setTimeout(()=>{
-            setCountPage(prev => prev + 1);
-            setAnimationShow(false);
+            setAnimationProcess(false);
+          } , 1000)
+        }
+      }else{
+        if(countPage != 0 ){
+          if(animationShow != "bottom"){
+            setAnimationProcess(true);
+            setCountPage(prev => prev - 1)
+            setAnimationShow("bottom");
+            setTimeout(()=>{
+              setAnimationShow(null);
+              console.log(animationProcess)
+              setAnimationProcess(false);
+            } , 1300)
+          }
+        }else{
+          setTimeout(()=>{
+            setAnimationProcess(false);
           } , 1000)
         }
       }
-    }else{
-      if(countPage != 0 ){
-        if(animationShow != "bottom"){
-          setCountPage(prev => prev - 1)
-          setAnimationShow("bottom");
-          setTimeout(()=>{
-            setAnimationShow(null);
-          } , 1300)
-        }
-      }
-    }
   }
   return (
     <div className='row'>
-      <Header />
-      <div className="contents-navbar">
+      <Header colorTxt={props.img[countPage].colorTxt} />
+      <div className="contents-navbar" style={{color: props.img[countPage].colorTxt}}>
         <ul>
           <li>Outerwear</li>
           <li>Knitwear & Sweatshirts</li>
@@ -48,7 +63,12 @@ function Main(props) {
           <li>Jeans</li>
         </ul>
       </div>
-      <div className="bac-slider-block" onWheel={(e)=>handleOnWheel(e)}>
+      <div className="bac-slider-block" onWheel={animationProcess ? null : (e)=>{
+        if(e.deltaY >= 125 || e.deltaY <= -125){
+          setAnimationProcess(true)
+          handleOnWheel(e)
+        }
+      }}>
         <div className="bac-slider-item">
 
           <img src={props.img[countPage].url} alt="name" className= {animationShow == "bottom" ? "bac-slider-item-img bottomHidden" : "bac-slider-item-img" } />
